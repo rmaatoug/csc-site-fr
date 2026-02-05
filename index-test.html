@@ -406,9 +406,16 @@
             if (result.found) {
                 resultDiv.classList.add('result-success');
                 nameDiv.textContent = result.anesthesiologist;
+                const anesthName = result.anesthesiologist;
+                const doctolibUrl = doctolibLinks[anesthName];
+
+                const anesthDisplay = doctolibUrl
+                    ? `<a href="${doctolibUrl}" target="_blank" rel="noopener noreferrer"><strong>${anesthName}</strong></a>`
+                    : `<strong>${anesthName}</strong>`;
+
                 messageDiv.innerHTML = `
                     <strong>Important :</strong> Prenez rendez-vous sur Doctolib avec
-                    <strong>${result.anesthesiologist}</strong> pour votre consultation
+                    ${anesthDisplay} pour votre consultation
                     pré-opératoire. C'est cet anesthésiste qui vous endormira le jour de votre opération.
                 `;
             } else {
