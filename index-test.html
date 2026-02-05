@@ -327,22 +327,25 @@
         }
 
         // Populate the surgeon dropdown
-        function populateSurgeonDropdown() {
-            const select = document.getElementById('surgeon');
-            const sortedSurgeons = Array.from(surgeonList).sort((a, b) => {
-                // Extract last name for sorting (after "Dr." or "Dr ")
-                const nameA = a.replace(/^Dr\.?\s*/i, '').toLowerCase();
-                const nameB = b.replace(/^Dr\.?\s*/i, '').toLowerCase();
-                return nameA.localeCompare(nameB, 'fr');
-            });
+    function populateSurgeonDropdown() {
+        const select = document.getElementById('surgeon');
 
-            sortedSurgeons.forEach(surgeon => {
-                const option = document.createElement('option');
-                option.value = surgeon;
-                option.textContent = surgeon;
-                select.appendChild(option);
-            });
-        }
+        // Reset dropdown (keep the placeholder option)
+        select.innerHTML = '<option value="">-- Sélectionnez un chirurgien --</option>';
+
+        const sortedSurgeons = Array.from(surgeonList).sort((a, b) => {
+            const nameA = a.replace(/^Dr\.?\s*/i, '').toLowerCase();
+            const nameB = b.replace(/^Dr\.?\s*/i, '').toLowerCase();
+            return nameA.localeCompare(nameB, 'fr');
+        });
+
+        sortedSurgeons.forEach(surgeon => {
+            const option = document.createElement('option');
+            option.value = surgeon;
+            option.textContent = surgeon;
+            select.appendChild(option);
+        });
+    }
 
         // Format date from input (YYYY-MM-DD) to French format (DD/MM/YYYY)
         function formatDateToFrench(dateStr) {
