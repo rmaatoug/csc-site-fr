@@ -226,6 +226,12 @@
         let surgeonList = new Set();
         let anesthesiologistColumns = []; // Maps column index to anesthesiologist name
 
+        // Doctolib links for anesthesiologists
+        const doctolibLinks = {
+            "Dr. Maatoug": "https://www.doctolib.fr/anesthesiste/lyon/adel-maatoug",
+            "Dr. Mariat": "https://www.doctolib.fr/anesthesiste/lyon/geraldine-mariat"
+        };
+
         // Parse CSV text into rows
         function parseCSV(text) {
             const rows = [];
