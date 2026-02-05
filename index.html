@@ -415,7 +415,8 @@
         async function init() {
             try {
                 // Load the CSV file
-                const response = await fetch('calendrier.csv');
+                // Fetch live data from Google Sheets
+                const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRCFMw2RRGRxRGNtMW4QQ2-0YPjfVtLd6QFQU5p2IEI1qa_K0liTEeRGwLKmjH3WKNYvOSy0kFaY4cU/pub?gid=1693056628&output=csv');
                 if (!response.ok) {
                     throw new Error('Failed to load schedule data');
                 }
