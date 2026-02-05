@@ -398,7 +398,8 @@
             }
 
             const result = lookupAnesthesiologist(dateInput.value, surgeonSelect.value);
-
+            console.log('ANESTH NAME =', JSON.stringify(result.anesthesiologist));
+            
             resultDiv.classList.remove('result-success', 'result-error');
             resultDiv.classList.add('show');
 
