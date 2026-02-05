@@ -421,14 +421,19 @@
 
             if (result.found) {
                 resultDiv.classList.add('result-success');
-                nameDiv.textContent = result.anesthesiologist;
+
                 const anesthName = result.anesthesiologist;
                 const doctolibUrl = doctolibLinks[anesthName];
 
+                // Create clickable name if Doctolib exists
                 const anesthDisplay = doctolibUrl
                     ? `<a href="${doctolibUrl}" target="_blank" rel="noopener noreferrer"><strong>${anesthName}</strong></a>`
                     : `<strong>${anesthName}</strong>`;
 
+                // 🔹 1) Name in the highlighted box (now clickable)
+                nameDiv.innerHTML = anesthDisplay;
+
+                // 🔹 2) Name in the explanatory text (also clickable)
                 messageDiv.innerHTML = `
                     <strong>Important :</strong> Prenez rendez-vous sur Doctolib avec
                     ${anesthDisplay} pour votre consultation
