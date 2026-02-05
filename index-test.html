@@ -416,9 +416,15 @@
         // Initialize the application
         async function init() {
             try {
-                // Load the CSV file
-                // Fetch live data from Google Sheets
-                const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRCFMw2RRGRxRGNtMW4QQ2-0YPjfVtLd6QFQU5p2IEI1qa_K0liTEeRGwLKmjH3WKNYvOSy0kFaY4cU/pub?gid=1693056628&output=csv');
+                // Reset data (important when reloading / re-initializing)
+                scheduleData = {};
+                surgeonList = new Set();
+                anesthesiologistColumns = [];
+
+                // Fetch live data from Google Sheets (no cache)
+                const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRCFMw2RRGRxRGNtMW4QQ2-0YPjfVtLd6QFQU5p2IEI1qa_K0liTEeRGwLKmjH3WKNYvOSy0kFaY4cU/pub?gid=1693056628&output=csv';
+                const response = await fetch(url + '&_=' + Date.now(), { cache: 'no-store' });
+
                 if (!response.ok) {
                     throw new Error('Failed to load schedule data');
                 }
@@ -427,6 +433,8 @@
                 const rows = parseCSV(csvText);
                 processCalendarData(rows);
                 populateSurgeonDropdown();
+
+        // ... le reste inchangé (hide loading, listeners, etc.)
 
                 // Hide loading, show form
                 document.getElementById('loading').classList.add('hidden');
