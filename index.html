@@ -481,29 +481,29 @@
                 document.getElementById('surgery-date').addEventListener('change', updateResult);
                 document.getElementById('surgeon').addEventListener('change', updateResult);
 
-} catch (e) {
-    console.error('Initialization error:', e);
+        } catch (e) {
+                console.error('Initialization error:', e);
 
-    const p = new URLSearchParams(location.search);
-    const details = [
-        `Page: ${location.href}`,
-        `UserAgent: ${navigator.userAgent}`,
-        `Fetch: Google Sheets CSV`,
-        `Erreur: ${String(e)}`
-    ].join("\n");
+                const p = new URLSearchParams(location.search);
+                const details = [
+                    `Page: ${location.href}`,
+                    `UserAgent: ${navigator.userAgent}`,
+                    `Fetch: Google Sheets CSV`,
+                    `Erreur: ${String(e)}`
+                ].join("\n");
 
-    document.getElementById('loading').innerHTML = `
-        <p style="color: #721c24;">Erreur lors du chargement des données.</p>
-        <p style="color: #666; font-size: 0.85rem; margin-top: 10px;">
-            Veuillez rafraîchir la page ou contacter la clinique.
-        </p>
-        <pre style="white-space:pre-wrap; font-size:12px; opacity:.85; margin-top:12px; text-align:left;">${details}</pre>
-        <p style="color:#666; font-size:0.8rem; margin-top:10px;">
-            Astuce : si cela fonctionne en partage de connexion 4G mais pas sur le Wi-Fi de la clinique,
-            le réseau bloque probablement l'accès à Google Sheets.
-        </p>
-    `;
-}
+                document.getElementById('loading').innerHTML = `
+                    <p style="color: #721c24;">Erreur lors du chargement des données.</p>
+                    <p style="color: #666; font-size: 0.85rem; margin-top: 10px;">
+                    Veuillez rafraîchir la page ou contacter la clinique.
+                    </p>
+                    <pre style="white-space:pre-wrap; font-size:12px; opacity:.85; margin-top:12px; text-align:left;">${details}</pre>
+                    <p style="color:#666; font-size:0.8rem; margin-top:10px;">
+                    Astuce : si cela fonctionne en partage de connexion 4G mais pas sur le Wi-Fi de la clinique,
+                    le réseau bloque probablement l'accès à Google Sheets.
+                    </p>
+            `;
+        }
 
         // Start the app
         init();
